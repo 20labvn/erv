@@ -1,0 +1,41 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django migrations (tuỳ chọn, nếu bạn không muốn chia sẻ migration file)
+# **Chỉ bật nếu bạn không muốn team cùng dùng migration**
+# */migrations/
+# */migrations/*.py
+# */migrations/*.pyc
+
+# SQLite database
+*.sqlite3
+
+# Environment variables
+.env
+
+# VS Code / PyCharm / IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Media files (uploads từ người dùng)
+media/
+
+# Static files (sinh ra từ collectstatic)
+staticfiles/
+static/
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# OS specific files
+.DS_Store
+Thumbs.db
