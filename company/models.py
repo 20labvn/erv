@@ -6,6 +6,8 @@ class Company(models.Model):
     location = models.CharField(max_length=255)  # Vị trí
     employee_count = models.PositiveIntegerField()  # Số lượng nhân viên
     image = models.ImageField(upload_to='company_images/', null=True, blank=True)  # Hình ảnh
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)  # Ví dụ 4.5 sao
 
     def __str__(self):
         return self.name
+

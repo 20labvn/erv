@@ -8,20 +8,69 @@
     <title>{% block title %}My Django Site{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+      <style>
+    :root {
+      --main-orange: #FF6F3C;
+      --light-bg: #FFF7F3;
+      --text-dark: #2E2E2E;
+    }
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+    }
+    .navbar {
+      background-color: var(--main-orange);
+    }
+    .navbar .nav-link,
+    .navbar-brand {
+      color: white !important;
+      font-weight: 500;
+    }
+    .btn-main {
+      background-color: var(--main-orange);
+      color: white;
+      border: none;
+    }
+    .btn-main:hover {
+      background-color: #e65e2d;
+    }
+    footer {
+      background-color: var(--main-orange);
+      color: white;
+      padding: 15px 0;
+    }
+  </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="#">MySite</a>
-        </div>
-    </nav>
-
+    <nav class="navbar navbar-expand-lg">
     <div class="container">
+      <a class="navbar-brand" href="#">Cam Ấm</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Thêm công ty</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+     <section class="py-5">
+         <div class="container">
         {% block content %}{% endblock %}
     </div>
+  </section>
 
+<footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2025 Cam Ấm Website. All rights reserved.</p>
+    </div>
+  </footer>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
