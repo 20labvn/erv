@@ -34,6 +34,14 @@
     .btn-main:hover {
       background-color: #e65e2d;
     }
+    .list-group-item {
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    }
+    .list-group-item:hover {
+    border-left: 4px solid var(--main-orange);
+    background-color: rgba(255, 165, 0, 0.05);
+    }
     footer {
       background-color: var(--main-orange);
       color: white;
@@ -45,14 +53,14 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">Cam Ấm</a>
+            <a class="navbar-brand" href="/">Cam Ấm</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="company/add-company">Thêm công ty</a></li>
                 </ul>
             </div>
@@ -69,7 +77,7 @@
     <div class="container">
       <p class="mb-0">© 2025 Cam Ấm Website. All rights reserved.</p>
     </div>
-  </footer>
+</footer>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>

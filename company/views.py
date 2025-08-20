@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect
+
 from .forms import CompanyForm
 from .models import Company
 
-def view_company(request):
+
+def home_view(request):
     companies = Company.objects.all()
-    return render(request, 'company/view-company.html', {'companies': companies})
+    return render(request, 'home/home.html', {'companies': companies})
+
+
+def view_company(request, id):
+    # companies = Company.objects.all()
+    return render(request, 'home/view.html', {'ids': id})
+
 
 def add_company(request):
     if request.method == 'POST':
