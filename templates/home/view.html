@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center py-3">
-            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Công Ty Cổ Phần Tập Đoàn Meey Land</h2>
+            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> {{ company.name }}</h2>
         </div>
 
         <div class="row">
@@ -16,12 +16,14 @@
                     <div class="card-body">
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
-                                <span class="me-3">22-11-2021</span>
+                                <span class="me-3">{{ company.created_at|date:"d/m/Y H:i" }}</span>
                                 <span class="badge rounded-pill bg-info">SHIPPING</span>
                             </div>
                             <div class="d-flex">
-                                <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i
-                                        class="bi bi-download"></i> <span class="text">Viết reivew</span></button>
+                                <button type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                    Viết Review
+                                </button>
                             </div>
                         </div>
                         <div class="card shadow-sm mb-4">
@@ -35,7 +37,7 @@
                                     <h5 class="mb-1 fw-bold">
                                         <a href="/company/cong-ty-co-phan-tap-doan-meey-land"
                                            class="text-decoration-none text-dark">
-                                            Công Ty Cổ Phần Tập Đoàn Meey Land
+                                            {{ company.name }}
                                         </a>
                                     </h5>
 
@@ -51,13 +53,13 @@
                                     </div>
 
                                     <div class="text-muted small mb-1">
-                                        <i class="fas fa-briefcase me-1"></i> Sản phẩm
+                                        <i class="fas fa-briefcase me-1"></i> {{ company.industry }}
                                         <span class="mx-2">|</span>
-                                        <i class="fas fa-users me-1"></i> 1-50
+                                        <i class="fas fa-users me-1"></i> {{ company.employee_count }}
                                     </div>
 
                                     <div class="text-muted small">
-                                        <i class="fas fa-building me-1"></i> Dong Da, Ha Noi
+                                        <i class="fas fa-building me-1"></i> {{ company.location }}
                                     </div>
                                 </div>
                             </div>
@@ -68,11 +70,13 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="d-flex mb-3">
+                            {% if reviews %}
+                            {% for review in reviews %}
                             <div>
-                                <h6 class="mb-1 fw-bold">Marco
-                                    <small class="text-muted ms-2">22/09/2014</small>
+                                <h6 class="mb-1 fw-bold">{{ review.author }}
+                                    <small class="text-muted ms-2">{{ review.created_at|date:"d/m/Y H:i" }}</small>
                                 </h6>
-                                <p class="mb-2">Great snippet! Thanks for sharing.</p>
+                                <p class="mb-2">{{ review.content }}</p>
                                 <div class="d-flex gap-2">
                                     <a href="#" class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-reply"></i> Reply
@@ -83,6 +87,11 @@
                                     </a>
                                 </div>
                             </div>
+                            {% endfor %}
+                            {% else %}
+                            <p>Chưa có review nào cho công ty này.</p>
+                            {% endif %}
+
                         </div>
                         <div class="collapse" id="replyOne">
                             <div class="ms-5">
@@ -101,15 +110,20 @@
                                 </div>
 
                                 <div class="d-flex">
+                                    {% if reviews %}
                                     <div>
-                                        <h6 class="mb-1 fw-semibold">Mary
-                                            <small class="text-muted ms-2">22/09/2014</small>
+                                        <h6 class="mb-1 fw-semibold">{{ review.author }}
+                                            <small class="text-muted ms-2">({{ review.created_at|date:"d/m/Y H:i"
+                                                }})</small>
                                         </h6>
-                                        <p class="mb-1">Thank you Guys!</p>
+                                        <p class="mb-1"> {{ review.content }}</p>
                                         <a href="#" class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-reply"></i> Reply
                                         </a>
                                     </div>
+                                    {% else %}
+                                    <p>Chưa có review nào cho công ty này.</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -134,7 +148,6 @@
                         </h5>
 
                         <ul class="list-unstyled">
-                            <!-- 5 sao -->
                             <li class="d-flex align-items-center mb-2">
                                 <span class="me-2"><a href="#" class="text-decoration-none">5 sao</a></span>
                                 <div class="progress flex-grow-1 me-2" style="height: 8px;">
@@ -142,7 +155,6 @@
                                 </div>
                                 <span class="text-muted">86</span>
                             </li>
-                            <!-- 4 sao -->
                             <li class="d-flex align-items-center mb-2">
                                 <span class="me-2"><a href="#" class="text-decoration-none">4 sao</a></span>
                                 <div class="progress flex-grow-1 me-2" style="height: 8px;">
@@ -150,7 +162,6 @@
                                 </div>
                                 <span class="text-muted">51</span>
                             </li>
-                            <!-- 3 sao -->
                             <li class="d-flex align-items-center mb-2">
                                 <span class="me-2"><a href="#" class="text-decoration-none">3 sao</a></span>
                                 <div class="progress flex-grow-1 me-2" style="height: 8px;">
@@ -158,7 +169,6 @@
                                 </div>
                                 <span class="text-muted">132</span>
                             </li>
-                            <!-- 2 sao -->
                             <li class="d-flex align-items-center mb-2">
                                 <span class="me-2"><a href="#" class="text-decoration-none">2 sao</a></span>
                                 <div class="progress flex-grow-1 me-2" style="height: 8px;">
@@ -166,7 +176,6 @@
                                 </div>
                                 <span class="text-muted">54</span>
                             </li>
-                            <!-- 1 sao -->
                             <li class="d-flex align-items-center">
                                 <span class="me-2"><a href="#" class="text-decoration-none">1 sao</a></span>
                                 <div class="progress flex-grow-1 me-2" style="height: 8px;">
@@ -181,6 +190,41 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Review {{ company.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Người review</label>
+                        {{ form.author }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nội dung review</label>
+                        {{ form.content }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Đánh giá</label>
+                        {{ form.rating }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success">Gửi Review</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

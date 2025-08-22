@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import CompanyForm
+from .forms import CompanyForm, ReviewForm
 from .models import Company
 
 
@@ -10,8 +10,20 @@ def home_view(request):
 
 
 def view_company(request, id):
-    # companies = Company.objects.all()
-    return render(request, 'home/view.html', {'ids': id})
+    company = get_object_or_404(Company, id=id)
+    reviews = company.reviews.all()
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.company_id = id
+            review.save()
+            return redirect("view_company", id=company.id)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'home/view.html', {'company': company, 'form': form, 'reviews': reviews, })
 
 
 def add_company(request):
