@@ -1,84 +1,38 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Django Site{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-      <style>
-    :root {
-      --main-orange: #FF6F3C;
-      --light-bg: #FFF7F3;
-      --text-dark: #2E2E2E;
-    }
-    body {
-      background-color: var(--light-bg);
-      color: var(--text-dark);
-    }
-    .navbar {
-      background-color: var(--main-orange);
-    }
-    .navbar .nav-link,
-    .navbar-brand {
-      color: white !important;
-      font-weight: 500;
-    }
-    .btn-main {
-      background-color: var(--main-orange);
-      color: white;
-      border: none;
-    }
-    .btn-main:hover {
-      background-color: #e65e2d;
-    }
-    .list-group-item {
-    border-left: 4px solid transparent;
-    transition: all 0.3s ease;
-    }
-    .list-group-item:hover {
-    border-left: 4px solid var(--main-orange);
-    background-color: rgba(255, 165, 0, 0.05);
-    }
-    footer {
-      background-color: var(--main-orange);
-      color: white;
-      padding: 15px 0;
-    }
-  </style>
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="/">Cam Ấm</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/">Review</a></li>
-                    <li class="nav-item"><a class="nav-link" href="company/add-company">Thêm công ty</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-     <section class="py-5">
-         <div class="container">
-             {% block content %}{% endblock %}
-         </div>
-     </section>
-
-<footer class="text-center">
-    <div class="container">
-      <p class="mb-0">© 2025 Cam Ấm Website. All rights reserved.</p>
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar-start">
+        <a class="btn btn-ghost text-xl">ERV</a>
     </div>
-</footer>
-    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    {% block extra_js %}{% endblock %}
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+            <li><a>Trang chủ</a></li>
+            <li><a>Review</a></li>
+            <li>
+                <details>
+                    <summary>More</summary>
+                    <ul class="p-2">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-end">
+        <a class="btn">Button</a>
+    </div>
+</div>
 </body>
+
 </html>
