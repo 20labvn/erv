@@ -1,231 +1,126 @@
 {% extends "base.html" %}
 {% load static %}
- 
+
 {% block title %}Trang chủ{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center py-3">
-            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> {{ company.name }}</h2>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="mb-3 d-flex justify-content-between">
-                            <div>
-                                <span class="me-3">{{ company.created_at|date:"d/m/Y H:i" }}</span>
-                                <span class="badge rounded-pill bg-info">SHIPPING</span>
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#reviewModal">
-                                    Viết Review
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card shadow-sm mb-4">
-                            <div class="card-body d-flex align-items-center">
-                                <div class="flex-shrink-0 me-3">
-                                    <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png"
-                                         class="rounded-circle me-3" width="50" height="50" alt="avatar">
-                                </div>
-
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-1 fw-bold">
-                                        <a href="/company/cong-ty-co-phan-tap-doan-meey-land"
-                                           class="text-decoration-none text-dark">
-                                            {{ company.name }}
-                                        </a>
-                                    </h5>
-
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="text-warning me-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                        <small class="text-muted">(880)</small>
-                                    </div>
-
-                                    <div class="text-muted small mb-1">
-                                        <i class="fas fa-briefcase me-1"></i> {{ company.industry }}
-                                        <span class="mx-2">|</span>
-                                        <i class="fas fa-users me-1"></i> {{ company.employee_count }}
-                                    </div>
-
-                                    <div class="text-muted small">
-                                        <i class="fas fa-building me-1"></i> {{ company.location }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="d-flex mb-3">
-                            {% if reviews %}
-                            {% for review in reviews %}
-                            <div>
-                                <h6 class="mb-1 fw-bold">{{ review.author }}
-                                    <small class="text-muted ms-2">{{ review.created_at|date:"d/m/Y H:i" }}</small>
-                                </h6>
-                                <p class="mb-2">{{ review.content }}</p>
-                                <div class="d-flex gap-2">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-reply"></i> Reply
-                                    </a>
-                                    <a class="btn btn-sm btn-outline-warning" data-bs-toggle="collapse"
-                                       href="#replyOne">
-                                        <i class="bi bi-chat-dots"></i> 2 comments
-                                    </a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% else %}
-                            <p>Chưa có review nào cho công ty này.</p>
-                            {% endif %}
-
-                        </div>
-                        <div class="collapse" id="replyOne">
-                            <div class="ms-5">
-                                <div class="d-flex mb-3">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/128.jpg"
-                                         class="rounded-circle me-3" width="40" height="40" alt="avatar">
-                                    <div>
-                                        <h6 class="mb-1 fw-semibold">The Hipster
-                                            <small class="text-muted ms-2">22/09/2014</small>
-                                        </h6>
-                                        <p class="mb-1">Nice job Maria.</p>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-reply"></i> Reply
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex">
-                                    {% if reviews %}
-                                    <div>
-                                        <h6 class="mb-1 fw-semibold">{{ review.author }}
-                                            <small class="text-muted ms-2">({{ review.created_at|date:"d/m/Y H:i"
-                                                }})</small>
-                                        </h6>
-                                        <p class="mb-1"> {{ review.content }}</p>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-reply"></i> Reply
-                                        </a>
-                                    </div>
-                                    {% else %}
-                                    <p>Chưa có review nào cho công ty này.</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <h2 class="text-xl font-bold mb-4">{{ company.name }}</h2>
+    <div class="lg:col-span-8 space-y-6">
+        <div class="card shadow-md bg-base-100">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-gray-500">{{ company.created_at|date:"d/m/Y H:i" }}</span>
+                        <span class="badge badge-info">SHIPPING</span>
                     </div>
                 </div>
 
-            </div>
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="text-center fw-bold mb-3">
-                            Tổng Review
-                            <span class="text-warning ms-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-                            <span class="text-muted ms-1">(880)</span>
+                <div class="flex items-center gap-4">
+                    <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png"
+                         class="w-12 h-12 rounded-full" alt="avatar">
+
+                    <div>
+                        <h5 class="font-bold text-lg">
+                            <a href="/company/cong-ty-co-phan-tap-doan-meey-land" class="hover:underline">
+                                {{ company.name }}
+                            </a>
                         </h5>
 
-                        <ul class="list-unstyled">
-                            <li class="d-flex align-items-center mb-2">
-                                <span class="me-2"><a href="#" class="text-decoration-none">5 sao</a></span>
-                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
-                                </div>
-                                <span class="text-muted">86</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-2">
-                                <span class="me-2"><a href="#" class="text-decoration-none">4 sao</a></span>
-                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 40%"></div>
-                                </div>
-                                <span class="text-muted">51</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-2">
-                                <span class="me-2"><a href="#" class="text-decoration-none">3 sao</a></span>
-                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
-                                </div>
-                                <span class="text-muted">132</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-2">
-                                <span class="me-2"><a href="#" class="text-decoration-none">2 sao</a></span>
-                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"></div>
-                                </div>
-                                <span class="text-muted">54</span>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <span class="me-2"><a href="#" class="text-decoration-none">1 sao</a></span>
-                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 85%"></div>
-                                </div>
-                                <span class="text-muted">110</span>
-                            </li>
-                        </ul>
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="rating rating-sm text-warning">
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked/>
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked/>
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked/>
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400"/>
+                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400"/>
+                            </div>
+                            <small class="text-gray-500">(880)</small>
+                        </div>
 
-                        <p class="text-center text-muted mt-3">Đang hiển thị toàn bộ review</p>
+                        <div class="text-sm text-gray-600">
+                            <i class="fas fa-briefcase mr-1"></i>{{ company.industry }}
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-users mr-1"></i>{{ company.employee_count }}
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            <i class="fas fa-building mr-1"></i>{{ company.location }}
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="card shadow-md bg-base-100">
+            <div class="card-body">
+                {% if reviews %}
+                {% for review in reviews %}
+                <div class="mb-4">
+                    <h6 class="font-bold">
+                        {{ review.author }}
+                        <small class="text-gray-500 ml-2">{{ review.created_at|date:"d/m/Y H:i" }}</small>
+                    </h6>
+                    <p class="mb-2">{{ review.content }}</p>
+                    <div class="flex gap-2">
+                        <button class="btn btn-xs btn-outline btn-primary">
+                            <i class="bi bi-reply"></i> Reply
+                        </button>
+                        <button class="btn btn-xs btn-outline btn-warning">
+                            <i class="bi bi-chat-dots"></i> 2 comments
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p class="text-gray-500">Chưa có review nào cho công ty này.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+</section>
+<aside class="col-span-3 bg-base-100 rounded-box shadow-md p-4">
+    <div class="card shadow-md bg-base-100">
+        <div class="card-body">
+            <h5 class="text-center font-bold mb-3">
+                Tổng Review
+                <span class="text-warning ml-2">
+              ⭐⭐⭐☆☆
+            </span>
+                <span class="text-gray-500 ml-1">(880)</span>
+            </h5>
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">Review {{ company.name }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-            </div>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Người review</label>
-                        {{ form.author }}
-                    </div>
+            <ul class="space-y-2">
+                <li class="flex items-center gap-2">
+                    <span class="w-12">5 sao</span>
+                    <progress class="progress progress-success flex-1" value="65" max="100"></progress>
+                    <span class="text-gray-500">86</span>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-12">4 sao</span>
+                    <progress class="progress progress-info flex-1" value="40" max="100"></progress>
+                    <span class="text-gray-500">51</span>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-12">3 sao</span>
+                    <progress class="progress progress-primary flex-1" value="100" max="100"></progress>
+                    <span class="text-gray-500">132</span>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-12">2 sao</span>
+                    <progress class="progress progress-warning flex-1" value="40" max="100"></progress>
+                    <span class="text-gray-500">54</span>
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="w-12">1 sao</span>
+                    <progress class="progress progress-error flex-1" value="85" max="100"></progress>
+                    <span class="text-gray-500">110</span>
+                </li>
+            </ul>
 
-                    <div class="mb-3">
-                        <label class="form-label">Nội dung review</label>
-                        {{ form.content }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Đánh giá</label>
-                        {{ form.rating }}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-success">Gửi Review</button>
-                </div>
-            </form>
-
+            <p class="text-center text-gray-500 mt-3">Đang hiển thị toàn bộ review</p>
         </div>
     </div>
-</div>
+
+</aside>
+
 {% endblock %}

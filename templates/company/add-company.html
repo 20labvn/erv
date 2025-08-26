@@ -4,44 +4,48 @@
 {% block title %}Thêm mới công ty{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h2 class="mb-4">Thêm mới công ty</h2>
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <div class="max-w-5xl mx-auto py-10">
+        <h2 class="text-2xl font-bold mb-6">Thêm mới công ty</h2>
 
-  <form method="post" enctype="multipart/form-data" class="row g-3">
-    {% csrf_token %}
-    <div class="col-md-6">
-      <label class="form-label">Tên công ty</label>
-      {{ form.name }}
-    </div>
+        <form method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% csrf_token %}
 
-    <div class="col-md-6">
-      <label class="form-label">Lĩnh vực</label>
-      {{ form.industry }}
-    </div>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Tên công ty</label>
+                {{ form.name }}
+            </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Vị trí</label>
-      {{ form.location }}
-    </div>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Lĩnh vực</label>
+                {{ form.industry }}
+            </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Số lượng nhân viên</label>
-      {{ form.employee_count }}
-    </div>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Vị trí</label>
+                {{ form.location }}
+            </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Hình ảnh</label>
-      {{ form.image }}
-    </div>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Số lượng nhân viên</label>
+                {{ form.employee_count }}
+            </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Đánh giá (0-5)</label>
-      {{ form.rating }}
-    </div>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Hình ảnh</label>
+                {{ form.image }}
+            </div>
 
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">Lưu công ty</button>
+            <div class="flex flex-col">
+                <label class="text-sm font-medium mb-2">Đánh giá (0-5)</label>
+                {{ form.rating }}
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+                <button type="submit" class="btn btn-primary w-full md:w-auto">Lưu công ty</button>
+            </div>
+        </form>
     </div>
-  </form>
-</div>
+</section>
+
 {% endblock %}

@@ -4,70 +4,59 @@
 {% block title %}Trang chủ{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row g-4">
-        <div class="col-md-8">
-            <h2 class="fw-bold mb-4 text-center" style="color: var(--main-orange);">Danh sách công ty</h2>
-            <ul class="list-group list-group-flush shadow-sm">
-                {% for company in companies %}
-                <li class="list-group-item d-flex align-items-start">
-                    <img src="{{ company.image.url }}"
-                         alt="{{ company.name }}"
-                         class="me-3 rounded-circle border"
-                         style="width:60px; height:60px; object-fit:cover;">
-                    <div class="w-100">
-                        <a href="/view-company/{{company.id}}" class="text-decoration-none fw-bold mb-1">
-                            {{ company.name }}
-                        </a>
-                        <span class="text-warning d-flex align-items-center">
-                            <i class="bi bi-star-fill"></i>
-                            <span class="ms-1">{{ company.rating }}</span>
-                        </span>
-                        <div class="d-flex">
-                            <p class="mb-0 me-4" style="min-width:150px;">
-                                <strong>Ngành:</strong> {{ company.industry }}
-                            </p>
-                            <p class="mb-0" style="min-width:120px;">
-                                <strong>Nhân sự:</strong> {{ company.employee_count }}
-                            </p>
-                        </div>
-                        <p class="mb-0 mt-1">
-                            <strong>Địa điểm:</strong> {{ company.location }}
-                        </p>
-                    </div>
-                </li>
+<aside class="col-span-3 bg-base-100 rounded-box shadow-md p-4">
+    <h2 class="font-bold mb-2">Sidebar Left</h2>
+    <ul class="menu bg-base-100 w-full">
+        <li><a>Menu 1</a></li>
+        <li><a>Menu 2</a></li>
+    </ul>
+</aside>
 
-                {% empty %}
-                <li class="list-group-item d-flex align-items-start">
-                    <div>
-                        <h5 class="fw-bold mb-1">Chưa có công ty nào</h5>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <h2 class="text-xl font-bold mb-4">Danh sách công ty </h2>
+    <ul class="list bg-base-100 rounded-box shadow-md">
 
-        <div class="col-md-4">
-            <div class="card mb-3 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Card Dịch vụ 1</h5>
-                    <p class="card-text">Thông tin chi tiết hơn về dịch vụ 1, kèm hình ảnh hoặc mô tả nổi bật.</p>
-                </div>
+        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+        {% for company in companies %}
+        <li class="list-row">
+            <div>
+                <img class="size-10 rounded-box" src="{{ company.image.url }}"/>
             </div>
-            <div class="card mb-3 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Card Dịch vụ 2</h5>
-                    <p class="card-text">Thông tin chi tiết hơn về dịch vụ 2, kèm hình ảnh hoặc mô tả nổi bật.</p>
-                </div>
+            <div>
+                <div>{{ company.name }}</div>
+                <div class="text-xs uppercase font-semibold opacity-60">{{ company.rating }}</div>
             </div>
-            <div class="card mb-3 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Card Dịch vụ 3</h5>
-                    <p class="card-text">Thông tin chi tiết hơn về dịch vụ 3, kèm hình ảnh hoặc mô tả nổi bật.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            <p class="list-col-wrap text-xs">
+                <strong>Ngành:</strong> {{ company.industry }}
+                <strong>Nhân sự:</strong> {{ company.employee_count }}
+                <strong>Địa điểm:</strong> {{ company.location }}
+            </p>
+            <a href="/view-company/{{company.id}}" class="btn btn-square btn-ghost">
+                <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"
+                       stroke="currentColor">
+                        <path d="M6 3L20 12 6 21 6 3z"></path>
+                    </g>
+                </svg>
+            </a>
+            <button class="btn btn-square btn-ghost">
+                <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"
+                       stroke="currentColor">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                    </g>
+                </svg>
+            </button>
+        </li>
+        {% empty %}
+        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Chưa có công ty nào</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<aside class="col-span-3 bg-base-100 rounded-box shadow-md p-4">
+    <h2 class="font-bold mb-2">Sidebar Right</h2>
+    <p class="text-gray-600">Nội dung phụ (ads, news,...)</p>
+</aside>
 
 {% endblock %}
