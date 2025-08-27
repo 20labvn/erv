@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <div class="max-w-5xl mx-auto py-10">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <div class="text-center lg:text-left">
+                <h1 class="text-5xl font-bold">SignUp now!</h1>
+                <p class="py-6">
+                    Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                    quasi. In deleniti eaque aut repudiandae et a id nisi.
+                </p>
+            </div>
+            <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div class="card-body">
+                    <form method="post" class="fieldset">
+                        {% csrf_token %}
+                        {{ form }}
+
+                        <button type="submit" class="btn btn-neutral mt-4">Signup</button>
+
+                        <p class="mt-4 text-center text-sm">
+                            Bạn đã có tài khoản?
+                            <a href="/accounts/login" class="link link-primary font-medium">
+                                Đăng nhập
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

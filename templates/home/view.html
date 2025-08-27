@@ -12,12 +12,12 @@
                 <div class="flex justify-between items-center mb-3">
                     <div class="flex items-center gap-3">
                         <span class="text-sm text-gray-500">{{ company.created_at|date:"d/m/Y H:i" }}</span>
-                        <span class="badge badge-info">SHIPPING</span>
+                        <span class="badge badge-info">{{ company.industry }}</span>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png"
+                    <img src="{{ company.image.url }}"
                          class="w-12 h-12 rounded-full" alt="avatar">
 
                     <div>

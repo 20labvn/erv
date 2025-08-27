@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <div class="max-w-5xl mx-auto py-10">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <div class="text-center lg:text-left">
+                <h1 class="text-5xl font-bold">Login now!</h1>
+                <p class="py-6">Đăng nhập để tiếp tục.</p>
+            </div>
+            <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div class="card-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {{ form }}
+                        <div><a class="link link-hover" href="{% url 'password_reset' %}">Forgot password?</a></div>
+                        <button type="submit" class="btn btn-neutral mt-4">Login</button>
+
+                        <p class="mt-4 text-center text-sm">
+                            Bạn mới biết đến?
+                            <a href="/accounts/signup/" class="link link-primary font-medium">
+                                Đăng ký
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
