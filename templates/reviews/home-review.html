@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+<aside class="col-span-3 bg-base-100 rounded-box shadow-md p-4">
+    <h2 class="font-bold mb-2">Sidebar Left</h2>
+    <ul class="menu bg-base-100 w-full">
+        <li><a>Menu 1</a></li>
+        <li><a>Menu 2</a></li>
+    </ul>
+</aside>
+
+<section class="col-span-6 col-start-4 bg-base-100 rounded-box shadow-md p-6">
+    <h2 class="text-xl font-bold mb-4">Danh sách công ty </h2>
+    <ul class="list bg-base-100 rounded-box shadow-md">
+        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+        {% for company in companies %}
+        <li class="list-row">
+            <div class="card bg-base-100  shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title">{{ company.title }}</h2>
+                </div>
+                <figure>
+                    <img
+                            src="{{ review.image.url }}" alt=""/>
+                </figure>
+            </div>
+        </li>
+        {% empty %}
+        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Chưa có công ty nào</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<aside class="col-span-3 bg-base-100 rounded-box shadow-md p-4">
+    <h2 class="font-bold mb-2">Sidebar Right</h2>
+    <p class="text-gray-600">Nội dung phụ (ads, news,...)</p>
+</aside>
+
+{% endblock %}

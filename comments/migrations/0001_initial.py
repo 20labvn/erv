@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Review",
+            name="Comment",
             fields=[
                 (
                     "id",
@@ -21,14 +21,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=255)),
                 ("content", models.TextField()),
-                (
-                    "image",
-                    models.ImageField(blank=True, null=True, upload_to="static/image/"),
-                ),
-                ("tag", models.CharField(blank=True, max_length=100, null=True)),
-                ("favorite_count", models.PositiveIntegerField(default=0)),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
