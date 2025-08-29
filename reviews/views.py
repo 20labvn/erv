@@ -9,19 +9,21 @@ def home_review(request):
     return render(request, 'reviews/home-review.html', {'reviews': reviews})
 
 
-def view_review(request):
+def view_review(request, id):
     review = get_object_or_404(Review, id=id)
     comments = review.comments.all()
     reactions = review.reactions.all()
 
-    return render(request, 'reviews/view-review.html', {'review': review, })
+    return render(request, 'reviews/view-review.html', {'review': review, 'comments': comments, 'reactions': reactions})
 
 
 def add_review(request):
     if request.method == 'POST':
         form = ReviewAddForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            review = form.save(commit=False)
+            review.author = request.user
+            review.save()
             return redirect('/')
     else:
         form = ReviewAddForm()
